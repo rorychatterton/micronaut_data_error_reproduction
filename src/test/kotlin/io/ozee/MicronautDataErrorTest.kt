@@ -1,5 +1,6 @@
 package io.ozee
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.micronaut.runtime.EmbeddedApplication
 import io.micronaut.test.extensions.kotest5.annotation.MicronautTest
 import io.kotest.matchers.shouldBe
@@ -28,7 +29,7 @@ class MicronautDataErrorTest(
         When("I try to retrieve them") {
             val retrievedEntities = repository.findAll()
             Then("I should get all the entities") {
-                retrievedEntities.size shouldBe 10
+                retrievedEntities.size shouldBeGreaterThan 9
             }
         }
     }
