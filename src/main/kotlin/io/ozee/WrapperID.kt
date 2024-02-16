@@ -2,10 +2,8 @@ package io.ozee
 
 import io.micronaut.data.annotation.TypeDef
 import io.micronaut.data.model.DataType
-import kotlinx.serialization.Serializable
 import java.util.*
 
-@Serializable
 @TypeDef(type = DataType.UUID, converter = WrapperIDConverter::class)
 data class WrapperID(
     private val id: UUID,

@@ -5,5 +5,5 @@ import io.micronaut.data.repository.CrudRepository
 
 @Repository
 interface TestEntityRepository: CrudRepository<TestEntity, WrapperID> {
-    fun getById(id: WrapperID): TestEntity
+    fun getById(id: WrapperID): TestEntity?
 }

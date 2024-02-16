@@ -4,6 +4,7 @@ import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.micronaut.runtime.EmbeddedApplication
 import io.micronaut.test.extensions.kotest5.annotation.MicronautTest
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 @MicronautTest
 class MicronautDataErrorTest(
@@ -16,9 +17,25 @@ class MicronautDataErrorTest(
         When("I try to retrieve it") {
             val retrievedEntity = repository.getById(savedEntity.id)
             Then("I should get the entity") {
+                retrievedEntity shouldNotBe null
+                retrievedEntity!!
                 entity.id shouldBe retrievedEntity.id
                 println(entity.id)
                 println(retrievedEntity.id)
+            }
+        }
+        When("I Update it") {
+            savedEntity.name = "Updated Name"
+            val updatedEntity = repository.update(savedEntity)
+            Then("I should get the updated entity") {
+                updatedEntity.name shouldBe "Updated Name"
+            }
+        }
+        When("I delete it") {
+            repository.delete(savedEntity)
+            Then("I should not be able to retrieve it") {
+                val retrievedEntity = repository.getById(savedEntity.id)
+                retrievedEntity shouldBe null
             }
         }
     }

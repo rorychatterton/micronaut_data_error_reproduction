@@ -12,6 +12,9 @@ class TestEntity {
     @JdbcTypeCode(SqlTypes.UUID)
     var id: WrapperID = WrapperID()
 
+    @Column
+    var name: String = ""
+
     @PostLoad
     fun onPostLoad() {
         id.replacePrefix(prefix)
