@@ -2,6 +2,7 @@ package io.ozee
 
 import io.micronaut.data.annotation.event.PostLoad
 import jakarta.persistence.*
+import org.hibernate.annotations.JavaType
 import org.hibernate.annotations.JdbcTypeCode
 import org.hibernate.type.SqlTypes
 
@@ -10,6 +11,7 @@ import org.hibernate.type.SqlTypes
 class TestEntity {
     @Id
     @JdbcTypeCode(SqlTypes.UUID)
+    @JavaType(WrapperIDDataType::class)
     var id: WrapperID = WrapperID()
 
     @Column
