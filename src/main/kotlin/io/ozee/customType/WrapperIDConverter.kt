@@ -1,4 +1,4 @@
-package io.ozee
+package io.ozee.customType
 
 import io.micronaut.core.convert.ConversionContext
 import io.micronaut.data.model.runtime.convert.AttributeConverter

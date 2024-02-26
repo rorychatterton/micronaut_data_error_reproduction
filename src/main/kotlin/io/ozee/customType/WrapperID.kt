@@ -1,4 +1,4 @@
-package io.ozee
+package io.ozee.customType
 
 import io.micronaut.data.annotation.TypeDef
 import io.micronaut.data.model.DataType
@@ -8,7 +8,11 @@ import java.util.*
 data class WrapperID(
     private val id: UUID,
     private var prefix: String = PLACEHOLDER_PREFIX
-) {
+): Comparable<WrapperID> {
+    override fun compareTo(other: WrapperID): Int {
+        return toUUID().compareTo(other.toUUID())
+    }
+
     override fun toString(): String {
         // base64 encode id
         val encodedID = Base64.getEncoder().encodeToString(id.toString().toByteArray())
@@ -27,5 +31,5 @@ data class WrapperID(
         const val PLACEHOLDER_PREFIX = "PREFIX-"
     }
 
-    constructor(): this(UUID.randomUUID())
+    constructor(prefix: String): this(UUID.randomUUID(), prefix)
 }
