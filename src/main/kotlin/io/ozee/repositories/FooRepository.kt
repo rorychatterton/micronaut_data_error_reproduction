@@ -8,7 +8,7 @@ import io.ozee.customType.WrapperID
 import io.ozee.entities.EntityFoo
 
 @Repository
-interface FooRepository: CrudRepository<EntityFoo, WrapperID> {
+interface FooRepository : CrudRepository<EntityFoo, WrapperID> {
     fun getById(id: WrapperID): EntityFoo?
 
     fun findAllByIdAfter(

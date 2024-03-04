@@ -86,6 +86,7 @@ class MicronautDataErrorTest(
         When("I query those relationships via bar") {
             val retrievedBar = barRepository.getById(savedBar.id)
             Then("I should get the relationships") {
+                println(retrievedBar?.id)
                 retrievedBar shouldNotBe null
                 retrievedBar!!.foo shouldNotBe null
                 retrievedBar.manyFoos.size shouldBeGreaterThan 0

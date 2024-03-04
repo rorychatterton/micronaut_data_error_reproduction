@@ -1,14 +1,11 @@
 package io.ozee.customType
 
-import io.micronaut.data.annotation.TypeDef
-import io.micronaut.data.model.DataType
 import java.util.*
 
-@TypeDef(type = DataType.UUID, converter = WrapperIDConverter::class)
 data class WrapperID(
     private val id: UUID,
-    private var prefix: String = PLACEHOLDER_PREFIX
-): Comparable<WrapperID> {
+    private var prefix: String
+) : Comparable<WrapperID>, java.io.Serializable {
     override fun compareTo(other: WrapperID): Int {
         return toUUID().compareTo(other.toUUID())
     }
@@ -29,7 +26,8 @@ data class WrapperID(
 
     companion object {
         const val PLACEHOLDER_PREFIX = "PREFIX-"
+        const val PREFIX_PARAMETER = "prefix"
     }
 
-    constructor(prefix: String): this(UUID.randomUUID(), prefix)
+    constructor(prefix: String) : this(UUID.randomUUID(), prefix)
 }
